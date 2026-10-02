@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>情報Ⅰ 一問一答</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <button type="button" class="link-btn" id="homeBtn" hidden>← 設定</button>
+  <h1>情報Ⅰ 一問一答 <small>第2章 デジタル化と情報デザイン</small></h1>
+</header>
+
+<main id="app">
+  <!-- 設定画面 -->
+  <section id="setup" class="screen">
+    <div class="panel">
+      <h2>出題順</h2>
+      <div class="seg" role="radiogroup">
+        <label><input type="radio" name="order" value="seq" checked><span>順番</span></label>
+        <label><input type="radio" name="order" value="random"><span>ランダム</span></label>
+      </div>
+
+      <h2>範囲</h2>
+      <div class="seg seg-wrap" role="radiogroup">
+        <label><input type="radio" name="range" value="all" checked><span>全問</span></label>
+        <label><input type="radio" name="range" value="basic"><span>基本問題</span></label>
+        <label><input type="radio" name="range" value="advanced"><span>発展問題</span></label>
+        <label><input type="radio" name="range" value="num"><span>番号指定</span></label>
+      </div>
+      <div id="numRange" class="num-range" hidden>
+        <label>問題 <select id="numFrom"></select></label>
+        <span>〜</span>
+        <label><select id="numTo"></select></label>
+      </div>
+
+      <label class="check"><input type="checkbox" id="onlyWrong"> 前回まちがえた問題だけ</label>
+
+      <p class="count" id="setupCount"></p>
+      <button type="button" class="btn primary big" id="startBtn">スタート</button>
+    </div>
+
+    <div class="panel">
+      <h2>これまでの記録</h2>
+      <p id="statsText" class="muted"></p>
+      <button type="button" class="link-btn danger" id="resetBtn">記録を消す</button>
+    </div>
+  </section>
+
+  <!-- 出題画面 -->
+  <section id="quiz" class="screen" hidden>
+    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+    <p class="progress-text" id="progressText"></p>
+    <article class="card" id="card" aria-live="polite"></article>
+  </section>
+
+  <!-- 結果画面 -->
+  <section id="result" class="screen" hidden>
+    <div class="panel result">
+      <p class="muted">正答率</p>
+      <p class="rate" id="rate"></p>
+      <p id="rateDetail"></p>
+      <button type="button" class="btn primary big" id="retryWrongBtn">まちがえた問題だけ解き直す</button>
+      <button type="button" class="btn big" id="backBtn">最初の画面へ</button>
+    </div>
+    <div class="panel" id="wrongPanel">
+      <h2>まちがえた問題</h2>
+      <ul id="wrongList" class="wrong-list"></ul>
+    </div>
+  </section>
+</main>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
